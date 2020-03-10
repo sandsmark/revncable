@@ -591,8 +591,11 @@ bool rfbclientcls::handleVersionProtocol()
     qDebug("Handling version protocol");
     //step 1. Get the version protocol from server
 
-    if (this->readFromHost((unsigned char*)vncServerData,12) != 12)
+    if (this->readFromHost((unsigned char*)vncServerData,12) != 12) {
+        qWarning() << "couldn't read enough";
         return false;
+    }
+    qDebug() << "Got version stuff";
 
     enc.clear();
     this->serverMajorVersion = enc.append((QChar)vncServerData[6]).toInt();

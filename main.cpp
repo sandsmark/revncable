@@ -26,16 +26,20 @@
  */
 
 #include <QApplication>
-#include "vncclientwidgetcls.h"
+#include "vncclientwidget2cls.h"
 #include "rfbclientwidgetcls.h"
 #include "vncclientwidget2cls.h"
+#include <epframebuffer.h>
 
 int main(int argc, char *argv[])
 {
+    qputenv("QT_QPA_PLATFORM", "epaper:enable_fonts");
     QApplication a(argc, argv);
+    EPFrameBuffer::clearScreen();
 
     vncclientwidget2cls vnc;
-    vnc.connectVNCTCP("localhost",5901); // connect via TCP
+//    vnc.connectVNCTCP("10.11.99.2", 3389); // connect via TCP
+    vnc.connectVNCTCP("10.11.99.2", 5900); // connect via TCP
     //vnc.connectVNCIPC("/var/nemd3/nemd3vnc"); connect via UNIX socket
     vnc.show();
     return a.exec();

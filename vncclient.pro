@@ -9,9 +9,13 @@ QT       += widgets
 
 TARGET = vncclient
 TEMPLATE = app
+target.path = /usr/bin/
+INSTALLS += target
 
 QMAKE_CXXFLAGS_DEBUG *= -pg
 QMAKE_LFLAGS_DEBUG *= -pg
+
+LIBS += -lqsgepaper
 
 
 SOURCES += main.cpp \
